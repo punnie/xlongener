@@ -37,14 +37,9 @@ func generateHandler (longener Longener, handler LongenerHandlerFunc)  http.Hand
   }
 }
 
-func main () {
-  // TODO(hpeixoto): grab this from program arguments
-  filename      := "zimbabwe.txt"
-  save_interval := 120 * time.Second
-  port          := "4242"
-
+func LongenerHTTP (filename string, save_interval int, port string) {
   kv := KeyValue{}
-  kv.Init(filename, save_interval)
+  kv.Init(filename, time.Duration(save_interval) * time.Second)
 
   longener := Longener{&kv}
 
@@ -52,4 +47,5 @@ func main () {
   http.HandleFunc("/", generateHandler(longener, fetchHandler));
   http.ListenAndServe(":" + port, nil)
 }
+
 
