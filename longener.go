@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 type KeyValuer interface {
   Store (key string, value string)
   Fetch (key string) string
@@ -14,11 +16,19 @@ func (longener *Longener) Fetch (key string) string {
 }
 
 func (longener *Longener) Store (url string) string {
-  url = "http://" + url // TODO(hpeixoto): do this right
+  url = sanitize(url)
   longened := Transform(url)
 
   go longener.kv.Store(longened, url)
 
   return longened
+}
+
+func sanitize (url string) string {
+  if strings.Contains(url, "://") {
+    return url
+  } else {
+    return "http://" + url
+  }
 }
 
