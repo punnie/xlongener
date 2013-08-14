@@ -1,11 +1,14 @@
 package main
 
-func main () {
-  // TODO(hpeixoto): grab this from program arguments
-  filename      := "zimbabwe.txt"
-  save_interval := 120
-  port          := "4242"
+import "flag"
 
-  LongenerHTTP(filename, save_interval, port)
+var filename = flag.String("filename", "zimbabwe.txt", "Path to the data store")
+var interval = flag.Int("interval", 30, "Interval between data store disk writes")
+var port     = flag.String("port", "4242", "Port for the webserver")
+
+func main () {
+  flag.Parse()
+  // TODO(hpeixoto): Add an unix socket option
+  LongenerHTTP(*filename, *interval, *port)
 }
 
