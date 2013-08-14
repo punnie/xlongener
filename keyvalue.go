@@ -3,7 +3,7 @@ package main
 import "time"
 import "os"
 import "fmt"
-import "io/ioutil"
+import "bufio"
 import "strings"
 
 type Request func(map[string]string)
@@ -50,13 +50,15 @@ func save (urls map[string]string, filename string) {
 }
 
 func (kv *KeyValue) load (filename string) {
-  content, err := ioutil.ReadFile(filename)
+  reader, err := os.Open(filename)
+
   if err != nil {
     panic(err)
   }
 
-  for _, entry := range strings.Split(string(content), "\n") {
-    var things = strings.Split(entry, ",")
+  scanner := bufio.NewScanner(reader)
+  for scanner.Scan() {
+    var things = strings.Split(scanner.Text(), ",")
     kv.Store(Unstuff(things[0]), Unstuff(things[1]))
   }
 }
