@@ -45,8 +45,7 @@ func save (urls map[string]string, filename string) {
   defer fp.Close()
 
   for key, url := range urls {
-    // TODO(hpeixoto): Escape key and value
-    fp.Write([]byte(fmt.Sprintf("%s,%s\n", key, url)))
+    fp.Write([]byte(fmt.Sprintf("%s,%s\n", Stuff(key), Stuff(url))))
   }
 }
 
@@ -58,8 +57,7 @@ func (kv *KeyValue) load (filename string) {
 
   for _, entry := range strings.Split(string(content), "\n") {
     var things = strings.Split(entry, ",")
-    // TODO(hpeixoto): Unescape key and value
-    kv.Store(things[0], things[1])
+    kv.Store(Unstuff(things[0]), Unstuff(things[1]))
   }
 }
 
@@ -74,5 +72,13 @@ func (kv *KeyValue) server () {
   for {
     (<-kv.c)(kv.urls)
   }
+}
+
+func Stuff (s string) string {
+  return strings.Replace(strings.Replace(s, "!", "#!", -1), ",", "!!", -1)
+}
+
+func Unstuff (s string) string {
+  return strings.Replace(strings.Replace(s, "!!", ",", -1), "#!", "!", -1)
 }
 
