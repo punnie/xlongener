@@ -22,6 +22,11 @@ func createHandler (handler LongenerHandler) {
 
 func fetchHandler (handler LongenerHandler) {
   key := handler.request.URL.Path[1:]
+  if key == "" {
+    http.ServeFile(handler.writer, handler.request, "index.html")
+    return
+  }
+
   location := handler.longener.Fetch(key)
 
   if location == "" {

@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <link rel='stylesheet' type='text/css' href='http://www.blueprintcss.org/blueprint/screen.css'>
+    <style type='text/css'>
+      #result { display: none; }
+      body { margin: 3em; }
+    </style>
+  </head>
+  <body>
+    <h1>xlongener</h1>
+
+    <form id='new_url' action='/create' method='GET'>
+      <input id='new_url_url' name='url' type='text'></input>
+      <input type='submit' value='Longen!' />
+    </form>
+
+    <div id='result'>
+      <h2>Longened URL</h2>
+      <p id='result_url'>...</p>
+    </div>
+
+    <script type='text/javascript'>
+      var getLongenedURL = function (url, callback) {
+        var req = new XMLHttpRequest();
+        req.onload = function () {
+          callback(window.location + this.responseText);
+        }
+
+        req.open('GET', '/create?url=' + url)
+        req.send()
+      }
+
+      document.getElementById('new_url').onsubmit = function () {
+        var result_url = document.getElementById('result_url');
+        var result     = document.getElementById('result');
+
+        result_url.innerHTML = 'loading...';
+        result.style.display = 'block';
+
+        getLongenedURL(document.getElementById('new_url_url').value, function (url) {
+          result_url.innerHTML = url;
+        });
+
+        return false;
+      }
+    </script>
+  </body>
+</html>
