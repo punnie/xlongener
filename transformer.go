@@ -16,7 +16,9 @@ func Xize (x []byte) string {
 }
 
 func Hashize (x []byte) []byte {
-  return sha256.New().Sum(x)[len(x):]
+  hasher := sha256.New()
+  hasher.Write(x)
+  return hasher.Sum(nil)
 }
 
 func Transform (message string) string {
