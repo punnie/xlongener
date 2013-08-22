@@ -16,7 +16,7 @@ func (longener *Longener) Fetch (key string) string {
 }
 
 func (longener *Longener) Store (url string) string {
-  url = sanitize(url)
+  url = Sanitize(url)
   longened := Transform(url)
 
   go longener.kv.Store(longened, url)
@@ -24,7 +24,8 @@ func (longener *Longener) Store (url string) string {
   return longened
 }
 
-func sanitize (url string) string {
+func Sanitize (url string) string {
+  url = strings.TrimSpace(url)
   if strings.Contains(url, "://") {
     return url
   } else {
