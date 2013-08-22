@@ -7,7 +7,7 @@ import "bufio"
 import "strings"
 
 type Request func(map[string]string)
-type Comm chan Request 
+type Comm chan Request
 type KeyValue struct {
   urls map[string]string
   c Comm
