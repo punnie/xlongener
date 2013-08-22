@@ -4,7 +4,7 @@ var getLongenedURL = function (url, callback) {
     callback(window.location + this.responseText);
   }
 
-  req.open('GET', '/create?url=' + url)
+  req.open('GET', '/create?url=' + encodeURIComponent(url))
   req.send()
 }
 
