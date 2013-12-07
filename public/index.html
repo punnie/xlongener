@@ -1,22 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <link rel='stylesheet' type='text/css' href='http://www.blueprintcss.org/blueprint/screen.css'>
-    <link rel="stylesheet" type="text/css" href="site.css" media="screen" charset="utf-8"/>
-    <link rel='shortcut icon' href='favicon.ico'/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  
+    <link rel="stylesheet" type="text/css" href="http://www.blueprintcss.org/blueprint/screen.css">
+    <link rel="stylesheet" type="text/css" href="site.css" media="screen" charset="utf-8">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>xLongener</title>
   </head>
   <body>
-    <h1>xlongener</h1>
+    <h1 style="font-family: Courier New,Courier,monospace; font-weight: bold; text-align: center;">
+      xLongener</h1>
+    
+    <div style="text-align: center;"> <span style="font-family: Courier New,Courier,monospace;">Why shorten links when you can make them longer?</span><br>
+      <br>
+      <form id="new_url" action="/create" method="get" name="new_url"> <input id="new_url_url" name="url" type="text"> <input value="Longen!" type="submit"> </form>
+    </div>
+    
+    <div style="text-align: center;" id="result">
+      <h2 style="font-family: Courier New,Courier,monospace; font-weight: bold; text-align: center;">
+      Longened URL</h2>
+      <textarea rows="8" cols="50" id="result_url">...
+      </textarea>
 
-    <form id='new_url' action='/create' method='GET'>
-      <input id='new_url_url' name='url' type='text' />
-      <input type='submit' value='Longen!' />
-    </form>
-
-    <div id='result'>
-      <h2>Longened URL</h2>
-      <textarea rows="8" cols="50" id='result_url'>...</textarea>
+      <div style="text-align: center;"> <span style="font-family: Courier New,Courier,monospace;">Check me out on 
+	    <a href="https://github.com/punnie/xlongener">GitHub</a></span>
+		<br>
+      </div>
     </div>
 
-    <script type='text/javascript' src='site.js'></script>
+    <div style="text-align: center;">
+      <script type="text/javascript" src="site.js">
+      </script>
+
+    </div>
   </body>
 </html>
