@@ -1,2 +1,7 @@
-#result { display: none; }
+#result { display: none; text-align: center}
+
 body { margin: 3em; }
+
+.page-title { font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; font-weight: bold; text-align: center; }
+
+.plain-text { font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace; text-align: center; }
